@@ -1,0 +1,123 @@
+{
+  "identifier": "hotw",
+  "title": "呵.tw",
+  "repository": "https://github.com/joustonhuang/mcp-server-hotw",
+  "homepage": "https://呵.tw",
+  "description": "AI-native URL shortener and paste handoff MCP service for cross-session agent collaboration.",
+  "category": "productivity",
+  "connection": {
+    "type": "http",
+    "url": "https://xn--dtr.tw/mcp"
+  },
+  "capabilities": {
+    "tools": true,
+    "resources": false,
+    "prompts": false
+  },
+  "tools": [
+    {
+      "name": "hotw_shorten",
+      "description": "Shorten a long URL into a memorable 呵.tw link and return the short URL plus QR code URL.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "description": "The destination URL to shorten."
+          },
+          "slug": {
+            "type": "string",
+            "description": "Optional custom short code."
+          }
+        },
+        "required": ["url"],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "hotw_create_paste",
+      "description": "Create a text, markdown, or code paste for agent handoff with optional metadata such as summary, tags, and parent linkage.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Optional paste title."
+          },
+          "content": {
+            "type": "string",
+            "description": "Paste body content."
+          },
+          "format": {
+            "type": "string",
+            "description": "Optional content format, for example text, markdown, or code."
+          },
+          "summary": {
+            "type": "string",
+            "description": "Optional short summary for agent-friendly discovery."
+          },
+          "parent_slug": {
+            "type": "string",
+            "description": "Optional parent paste slug for threaded handoff chains."
+          },
+          "tags": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Optional exact-match tags."
+          }
+        },
+        "required": ["content"],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "hotw_resolve",
+      "description": "Resolve a slug and return either the original URL or paste metadata.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "slug": {
+            "type": "string",
+            "description": "The 呵.tw slug to resolve."
+          }
+        },
+        "required": ["slug"],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "hotw_qr_url",
+      "description": "Return a QR code image URL for a short link or paste slug.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "slug": {
+            "type": "string",
+            "description": "The slug to generate a QR code for."
+          },
+          "is_paste": {
+            "type": "boolean",
+            "description": "Set true when the slug refers to `/p/<slug>` instead of a short redirect."
+          }
+        },
+        "required": ["slug"],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "hotw_find_by_tag",
+      "description": "Find pastes by exact tag match.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "tag": {
+            "type": "string",
+            "description": "Exact tag value to search."
+          }
+        },
+        "required": ["tag"],
+        "additionalProperties": false
+      }
+    }
+  ]
+}
