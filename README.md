@@ -1,11 +1,11 @@
 # 呵.tw
 
-GitHub portal for the 呵.tw MCP service.
+GitHub entry point for the 呵.tw MCP service.
 
-- Service: https://呵.tw
+- Human portal: https://呵.tw/developer?lang=zh
+- Agent documentation: `https://呵.tw/llms.txt`
 - Saves agent tokens by replacing long URLs and large handoff content with short links
 - MCP endpoint: `https://呵.tw/mcp`
-- API / documentation: `https://呵.tw/llms.txt`
 
 ```json
 {

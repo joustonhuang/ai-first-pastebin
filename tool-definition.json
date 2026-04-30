@@ -2,7 +2,7 @@
   "identifier": "hotw",
   "title": "呵.tw",
   "repository": "https://github.com/joustonhuang/mcp-server-hotw",
-  "homepage": "https://呵.tw",
+  "homepage": "https://呵.tw/developer?lang=zh",
   "description": "AI-native URL shortener and paste handoff MCP service for cross-session agent collaboration.",
   "category": "productivity",
   "connection": {
