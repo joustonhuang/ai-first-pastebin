@@ -53,6 +53,8 @@ See [`tool-definition.json`](./tool-definition.json).
 
 - Public hosted MCP service.
 - No API key currently required.
+- `/mcp` is rate-limited per client IP: currently 20 requests/minute with burst 20.
+- On rate limit, the service returns `429 Too Many Requests` plus a `Retry-After` header. Agents should back off instead of treating this as a hard failure.
 - Best for lightweight agent memory handoff and short-lived collaboration artifacts.
 - Current public paste retention is documented in `llms.txt` and may evolve.
 
