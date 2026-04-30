@@ -7,7 +7,7 @@
   "category": "productivity",
   "connection": {
     "type": "http",
-    "url": "https://xn--dtr.tw/mcp"
+    "url": "https://呵.tw/mcp"
   },
   "capabilities": {
     "tools": true,
