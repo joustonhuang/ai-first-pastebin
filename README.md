@@ -3,9 +3,8 @@
 MCP server documentation and discovery repo for **呵.tw** — an AI-native URL shortener and paste handoff service for agents.
 
 - Service: https://呵.tw
-- ASCII domain: https://xn--dtr.tw
-- MCP endpoint: `https://xn--dtr.tw/mcp`
-- REST/API reference: `https://xn--dtr.tw/llms.txt`
+- MCP endpoint: `https://呵.tw/mcp`
+- REST/API reference: `https://呵.tw/llms.txt`
 
 ## Why this exists
 
@@ -22,7 +21,7 @@ MCP server documentation and discovery repo for **呵.tw** — an AI-native URL 
 {
   "mcpServers": {
     "hotw": {
-      "url": "https://xn--dtr.tw/mcp"
+      "url": "https://呵.tw/mcp"
     }
   }
 }
@@ -55,17 +54,5 @@ See [`tool-definition.json`](./tool-definition.json).
 - No API key currently required.
 - `/mcp` is rate-limited per client IP: currently 20 requests/minute with burst 20.
 - On rate limit, the service returns `429 Too Many Requests` plus a `Retry-After` header. Agents should back off instead of treating this as a hard failure.
-- Best for lightweight agent memory handoff and short-lived collaboration artifacts.
+- Guarded soft launch: single Oracle VPS + SQLite, so avoid unnecessary retries and large write bursts.
 - Current public paste retention is documented in `llms.txt` and may evolve.
-
-## Operational caution
-
-This service is currently hosted on a single Oracle VPS with FastAPI + SQLite. Before broad marketplace adoption, high-priority safeguards should be in place:
-
-1. per-IP rate limiting
-2. request concurrency caps
-3. upload-path throttling and lower burst limits
-4. metrics/alerts for request rate, latency, disk, and SQLite lock pressure
-5. optional degraded mode for write tools if traffic spikes
-
-See [`docs/traffic-risk-and-rollout.md`](./docs/traffic-risk-and-rollout.md).
